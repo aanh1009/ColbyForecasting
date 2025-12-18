@@ -314,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>thinned_aug_obs <span class="ot">=</span> <span class="fu">thin_by_cell</span>(aug_obs, mask)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mask, <span class="at">reset =</span> <span class="cn">FALSE</span>, <span class="at">key.pos =</span> <span class="cn">NA</span>, <span class="at">breaks =</span> <span class="st">"equal"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coast, <span class="at">col =</span> <span class="st">"orange"</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(aug_obs), <span class="at">col =</span> <span class="st">"yellow"</span>, <span class="at">cex =</span> <span class="fl">0.1</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(thinned_aug_obs), <span class="at">col =</span> <span class="st">"yellow"</span>, <span class="at">cex =</span> <span class="fl">0.1</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -352,7 +352,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Heads up! Some species might not need to thin the observations so agressively. Some might not need us to aggregate the cells. <em>Mola mola</em> is a highly observed species during certain times of the year, so it merits aggressive thinning. Keep in mind you may need to treat your species observations differently - keep your options open!</p>
+<p>Heads up! Some species might not need to thin the observations so aggressively. Some might not need us to aggregate the cells. <em>Mola mola</em> is a highly observed species during certain times of the year, so it merits aggressive thinning. Keep in mind you may need to treat your species observations differently - keep your options open!</p>
 </div>
 </div>
 </section>
@@ -360,30 +360,30 @@ Note
 <h2 data-number="1.3" class="anchored" data-anchor-id="randomly-sample-background-points"><span class="header-section-number">1.3</span> Randomly sample background points</h2>
 <p>Now that we have a reasonable set of observation, we now need to choose points around those to represent the background. The <code>sample_background()</code> function requires three input arguments: the set of observations, the raster array and the number of points desired. We can also ask for the original presence observations to be returned. We’ll modify the output by adding a column identifying the month.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>obsbkg <span class="ot">=</span> <span class="fu">sample_background</span>(wicked_thinned_aug_obs, mask, <span class="dv">2</span><span class="sc">*</span><span class="fu">nrow</span>(wicked_thinned_aug_obs),</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>obsbkg <span class="ot">=</span> <span class="fu">sample_background</span>(aug_obs, mask, <span class="dv">2</span><span class="sc">*</span><span class="fu">nrow</span>(wicked_thinned_aug_obs),</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">return_pres =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">month =</span> <span class="st">"Aug"</span>, <span class="at">.before =</span> <span class="dv">1</span>)    <span class="co"># .before tells R where to put this new column</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>obsbkg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 2046 features and 2 fields
+<pre><code>Simple feature collection with 3884 features and 2 fields
 Geometry type: POINT
 Dimension:     XY
-Bounding box:  xmin: -74.72716 ymin: 38.87438 xmax: -65.02004 ymax: 45.54306
+Bounding box:  xmin: -74.89169 ymin: 38.805 xmax: -65.02004 ymax: 45.29627
 Geodetic CRS:  WGS 84
-# A tibble: 2,046 × 3
+# A tibble: 3,884 × 3
    month class                geometry
  * &lt;chr&gt; &lt;fct&gt;             &lt;POINT [°]&gt;
- 1 Aug   presence (-67.84244 43.55836)
- 2 Aug   presence       (-70.65 42.95)
- 3 Aug   presence (-68.16927 42.38727)
- 4 Aug   presence       (-68.27 42.78)
- 5 Aug   presence     (-66.538 43.432)
- 6 Aug   presence (-66.45789 42.38764)
- 7 Aug   presence (-69.54475 42.84995)
- 8 Aug   presence (-69.13372 43.60813)
- 9 Aug   presence (-72.62202 39.48414)
-10 Aug   presence     (-66.933 43.283)
-# ℹ 2,036 more rows</code></pre>
+ 1 Aug   presence   (-72.1214 39.8514)
+ 2 Aug   presence       (-67.46 43.53)
+ 3 Aug   presence (-72.35158 38.98323)
+ 4 Aug   presence (-67.62971 43.99298)
+ 5 Aug   presence   (-68.28717 41.857)
+ 6 Aug   presence (-69.02174 40.98727)
+ 7 Aug   presence   (-72.3179 40.5558)
+ 8 Aug   presence (-67.80601 43.05127)
+ 9 Aug   presence       (-68.23 42.74)
+10 Aug   presence (-68.19587 43.84306)
+# ℹ 3,874 more rows</code></pre>
 </div>
 </div>
 <p>Let’s see where these fall relative to each other.</p>

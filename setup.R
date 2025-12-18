@@ -5,9 +5,10 @@
 
 # Here we list the packages by name, CRAN is easier than GITHUB
 packages = list(
-  CRAN = c("remotes", "usethis", "ggplot2", "readr", "tidyr", "tidymodels", "sf", 
-           "imager", "stars", "rnaturalearth", "robis", "httr", "yaml",
-           "effectplots", "ranger", "bundle", "butcher", "dplyr", "tidysdm"),
+  CRAN = c("remotes", "usethis", "ggplot2", "readr", "tidyr", "tidymodels",  
+           "imager", "stars", "rnaturalearth", "robis", "httr", "yaml", 
+           "spatialsample", "workflowsets", "effectplots", "ranger", 
+           "bundle", "butcher",  "tidysdm", "sf", "dplyr", "patchwork"),
   GITHUB = list(
     ColbyForecastingDocs = c(repos = "BigelowLab/ColbyForecastingDocs", ref = "main"))
 )

@@ -65,7 +65,7 @@ Thinning is the process we use to sub-sample observations so that they are more 
 thinned_aug_obs = thin_by_cell(aug_obs, mask)
 plot(mask, reset = FALSE, key.pos = NA, breaks = "equal")
 plot(coast, col = "orange", add = TRUE)
-plot(st_geometry(aug_obs), col = "yellow", cex = 0.1, add = TRUE)
+plot(st_geometry(thinned_aug_obs), col = "yellow", cex = 0.1, add = TRUE)
 ```
 
 We now have thinned the observations to just `r nrow(thinned_aug_obs)` records. That has certainly made a difference - no more dense lines of observations even though we can discern the survey track lines.  
@@ -84,7 +84,7 @@ plot(st_geometry(wicked_thinned_aug_obs), col = "yellow", cex = 0.1, add = TRUE)
 Whoa, we now have thinned the observations to just `r nrow(wicked_thinned_aug_obs)` records. If you didn't know that many of the observations came from straight-line surveys then you might not notice the faint structure of the distribution. Alas, you do have the knowledge so you probably can pick out the lines, but all in all this is a pretty good representation.
 
 :::{.callout-note}
-Heads up!  Some species might not need to thin the observations so agressively.  Some might not need us to aggregate the cells. *Mola mola* is a highly observed species during certain times of the year, so it merits aggressive thinning. Keep in mind you may need to treat your species observations differently - keep your options open!
+Heads up!  Some species might not need to thin the observations so aggressively.  Some might not need us to aggregate the cells. *Mola mola* is a highly observed species during certain times of the year, so it merits aggressive thinning. Keep in mind you may need to treat your species observations differently - keep your options open!
 :::
 
 ## Randomly sample background points
@@ -93,7 +93,7 @@ Now that we have a reasonable set of observation, we now need to choose points a
 original presence observations to be returned.  We'll modify the output by adding a column identifying the month.
 
 ```{r sample_background}
-obsbkg = sample_background(wicked_thinned_aug_obs, mask, 2*nrow(wicked_thinned_aug_obs),
+obsbkg = sample_background(aug_obs, mask, 2*nrow(wicked_thinned_aug_obs),
                            return_pres = TRUE) |>
   mutate(month = "Aug", .before = 1)    # .before tells R where to put this new column
 obsbkg

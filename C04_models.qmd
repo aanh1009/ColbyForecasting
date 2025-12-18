@@ -170,9 +170,9 @@ We have already tested variables for high collinearlity, but here we can add a s
 :::
 
 ```{r step_corr}
-rec = rec |> 
-  step_corr(all_numeric_predictors())
-rec
+#rec = rec |> 
+#  step_corr(all_numeric_predictors())
+#rec
 ```
 
 ## Add the recipe to the workflow
@@ -192,9 +192,14 @@ We are going to build a [random forest "rf"](https://www.geeksforgeeks.org/rando
 We create a random forest model, declare that it should be run in classification mode (not regression mode), and then specify that we want to use the `ranger` modeling engine (as opposed to, say, the `randForest` engine).  We additionally specify that it should be able to produce probablilites of a class not just the class label.  We also request that it saves bits of info so that we can compare the relative importance of the covariates.
 
 ```{r start_rf}
-model = rand_forest() |>
+model = rand_forest(
+             mtry = tune(),
+             trees = tune(),
+             min_n = tune()) |>
   set_mode("classification") |>
-  set_engine("ranger", probability = TRUE, importance = "permutation") 
+  set_engine("ranger", 
+             probability = TRUE, 
+             importance = "permutation") 
 model
 ```
 Well, that feels underwhelming. We can pass arguments unique to the engine using the `set_args()` function, but, for now we'll accept the defaults.
@@ -207,6 +212,12 @@ Now we simply add the model to the workflow.
 wflow = wflow |>
   add_model(model)
 wflow
+```
+# Tune the model
+
+
+```{r tune}
+wf = workflow_map(wflow, fn = "tune_grid")
 ```
 
 # Fit the model
