@@ -62,10 +62,10 @@ forecasts, to understanding the complexities of forecasts’ impacts.
 - Discussion: What are we forecasting?
 
 - [Discussion
-  notes](https://docs.google.com/document/d/1YNo4EiQP9spu2X-jKcjaEqujNmfNFCV2vHqsuTsw1iI/edit?tab=t.0)
+  notes](https://docs.google.com/document/d/12EHB44If98Kb811HNHM8uQfErNeU8lqITtzsWVBcFqo/edit?tab=t.0)
 
 - [Superforecasting
-  challenge](https://docs.google.com/forms/d/1BNwFlr1gvsdxa4CP8sKJJXYmClo5jaqkj9eQnRPvKIs/viewform?edit_requested=true#settings)
+  challenge](https://docs.google.com/forms/d/e/1FAIpQLSeuuLMzVbg8Hsdn9slGt5qFx1P78tCbKzsEuuHdnt3auQIC2Q/viewform?usp=sharing&ouid=104137235354632912497)
 
 - Lecture: Forecasting Introduction
 
