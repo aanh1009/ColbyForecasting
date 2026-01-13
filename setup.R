@@ -9,7 +9,7 @@ packages = list(
            "imager", "stars", "rnaturalearth", "robis", "httr", "yaml", "vip",
            "spatialsample", "workflowsets", "effectplots", "ranger", "ggokabeito",
            "bundle", "butcher",  "tidysdm", "sf", "dplyr", "patchwork", "pdp",
-           "maxnet"),
+           "maxnet", "cubelyr"),
   GITHUB = list(
     ColbyForecastingDocs = c(repos = "BigelowLab/ColbyForecastingDocs", ref = "main"))
 )
