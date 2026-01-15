@@ -32,7 +32,7 @@ source("setup.R")
 Next is to read in the observations you have already downloaded for that species.
 
 ```{r read_obs}
-obs = read_observations()
+obs = read_observations("Centropristis striata")
 obs
 ```
 

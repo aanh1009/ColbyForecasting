@@ -1,5 +1,5 @@
 
-read_observations = function(scientificname = "Eubalaena glacialis",
+read_observations = function(scientificname = "Phocoena phocoena",
                              minimum_year = 1970, 
                              basis_of_record = NULL,
                              individual_count = NULL,
