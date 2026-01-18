@@ -1,5 +1,5 @@
 
-read_observations = function(scientificname = "Phocoena phocoena",
+read_observations = function(scientificname = "Centropristis striata",
                              minimum_year = 1970, 
                              basis_of_record = NULL,
                              individual_count = NULL,
